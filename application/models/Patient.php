@@ -32,7 +32,7 @@ class Patient extends CI_Model
 //        $prenomP = $this->Input->post('prenomPatien');
 //        $ageP = $this->Input->post('agePatien');
 //        $telP = $this->Input->post('telPatien');
-//        $emailP = $this->Input->post('emailPatien');
+////        $emailP = $this->Input->post('emailPatien');
         $data = array('nomP'=>$nomP, 'prenomP'=>$prenomP,
                         'ageP'=>$ageP, 'telP'=>$telP,
                         'emailP'=>$emailP);
