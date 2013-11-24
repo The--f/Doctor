@@ -177,7 +177,7 @@ input[type=text], input[type=password] ,.register select,.register textarea {
   border-style: solid;
   border-color: #c4c4c4 #d1d1d1 #d4d4d4;
   border-radius:3px;
-  --webkit-border-radius: 5px;
+  webkit-border-radius: 5px;
   outline:3px solid rgba(200, 105, 137, 0.09);
   -moz-outline-radius:7px;
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
@@ -210,7 +210,7 @@ input[type=submit] {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #AA1E4D), color-stop(100%, #7D0F33));
   background-image: -webkit-linear-gradient(top, #AA1E4D, #7D0F33);
   background-image:-moz-linear-gradient(center top , #AA1E4D, #7D0F33)
-  background-image: -ms-linear-gradient(top, #AA1E4D, #7D0F33);
+  background-image:-ms-linear-gradient(top, #AA1E4D, #7D0F33);
   background-image: -o-linear-gradient(top, #AA1E4D, #7D0F33);
   background-image: linear-gradient(top, #AA1E4D, #7D0F33);
   -webkit-box-shadow:0 1px #CD4170 inset, 0 1px 2px #93284C;
