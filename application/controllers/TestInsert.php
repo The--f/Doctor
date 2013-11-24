@@ -37,7 +37,7 @@ class TestInsert extends CI_Controller {
                 'prenom' => set_value('prenom'),
                 'email' => set_value('email')
             );
-
+            $this->Patient->insertPatient("hhHHHH", "eeeeeee", 21, 2132323, "zzz@mmail.com");
             // run insert model to write data to db
 
             if ($this->Patient->SaveForm($form_data) == TRUE) { // the information has therefore been successfully saved in the db
