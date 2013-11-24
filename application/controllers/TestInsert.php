@@ -37,10 +37,12 @@ class TestInsert extends CI_Controller {
                 'prenom' => set_value('prenom'),
                 'email' => set_value('email')
             );
-
+            //TODO: Search for the user before inserting :
+            //  if not found  then :
             // run insert model to write data to db
 
-            if ($this->Patient->SaveForm($form_data) == TRUE) { // the information has therefore been successfully saved in the db
+
+            if ($this->Patient->insertPatient($form_data['nom'], $form_data ['prenom'], $form_data ['email']) == TRUE) { // the information has therefore been successfully saved in the db
                 redirect('TestInsert/success');   // or whatever logic needs to occur
             } else {
                 echo 'An error occurred saving your information. Please try again later';
