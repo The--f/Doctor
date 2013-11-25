@@ -38,10 +38,11 @@
 |
 */
 // $route['URL'] = "controller name"
-$route['default_controller'] = "test_control";
-$route['TestInsert'] = "TestInsert";
-$route['add_reserv/(:num)'] = "add_reserv/add/$1";
-$route['404_override'] = '';
+
+$route['Insert'] = 'TestInsert';
+$route['add_reserv/(:num)'] = 'add_reserv/add/$1';
+$route['default_controller'] = 'test_control';
+$route['404_override'] = 'test_control';
 
 
 /* End of file routes.php */
