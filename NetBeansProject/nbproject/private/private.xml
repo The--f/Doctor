@@ -3,6 +3,15 @@
     <coverage xmlns="http://www.netbeans.org/ns/code-coverage/1" enabled="false"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/config/routes.php</file>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/views/test/testview.php</file>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/views/TestInsert/formview.php</file>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/views/TestList/ListView.php</file>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/models/Patient.php</file>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/controllers/test_control.php</file>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/controllers/TestList.php</file>
+            <file>file:/C:/xampp/htdocs/Doctor_clone/Doctor/application/controllers/TestInsert.php</file>
+        </group>
     </open-files>
 </project-private>
