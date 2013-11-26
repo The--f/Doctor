@@ -17,8 +17,9 @@ class add_reserv extends CI_Controller {
         parent::__construct();
         }
 
-    function add() {
-        $this->load->view("test/testviewnb2");
+    function add($day) {
+        $data = array('day' => $day);
+        $this->load->view("test/testviewnb2", $data);
     }
 
 }

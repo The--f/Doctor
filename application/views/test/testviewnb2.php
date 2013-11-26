@@ -12,4 +12,6 @@
  * @author Feker
  */
 echo ("This is test view BBB 22  ");
+echo ("<br>");
+echo $day;
 ?>

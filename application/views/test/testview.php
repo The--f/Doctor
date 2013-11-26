@@ -12,5 +12,7 @@
  * @author Feker
  */
 echo ("This is test view ");
-
+echo ('<a href="list">list</a>');
+echo ("<br>");
+echo ('<a href="insert">insert</a>')
 ?>
