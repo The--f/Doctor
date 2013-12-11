@@ -7,10 +7,14 @@
  */
 
 /**
- * Description of Reservation
+ * Description of Reservation_controller
  *
  * @author Feker
  */
-class Reservation extends Rdv {
-    
+class Reservation_controller extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+    }
+
 }

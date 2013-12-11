@@ -14,19 +14,13 @@
  */
 class test_control extends CI_Controller {
    function index() {
-        $this->load->library('calendar');
-
-
-        $data = array(
-            3 => 'add_reserv/3',
-            7 => 'add_reserv/3',
-            13 => 'add_reserv/3',
-            26 => 'add_reserv/3'
-        );
-        echo $this->calendar->generate(2013, 6, $data);
-
-        $this->load->view('test/testview');
+       echo "index_test control ";
+        echo date("Y");
+        echo date("m");
+        echo date("d");
     }
+
+    
 
     function error($errnumber) {
         echo ' an 404 error occured ' . $errnumber;
