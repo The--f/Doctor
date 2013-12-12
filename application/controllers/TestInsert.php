@@ -29,7 +29,8 @@ class TestInsert extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
             $this->load->view('TestInsert/formview');
-        } else { // passed validation proceed to post success logic
+        } 
+        else { // passed validation proceed to post success logic
             // build array for the model
 
             $form_data = array(
@@ -41,10 +42,10 @@ class TestInsert extends CI_Controller {
             //  if not found  then :
             // run insert model to write data to db
 
-
-            if ($this->Patient->insertPatient($form_data['nom'], $form_data ['prenom'], $form_data ['email']) == TRUE) { // the information has therefore been successfully saved in the db
+              if ($this->Patient->insertPatient($form_data['nom'], $form_data ['prenom'], $form_data ['email']) == TRUE) { // the information has therefore been successfully saved in the db
                 redirect('TestInsert/success');   // or whatever logic needs to occur
-            } else {
+            } 
+            else {
                 echo 'An error occurred saving your information. Please try again later';
                 // Or whatever error handling is necessary
             }
