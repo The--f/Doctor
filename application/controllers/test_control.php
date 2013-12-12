@@ -14,13 +14,18 @@
  */
 class test_control extends CI_Controller {
    function index() {
-       echo "index_test control ";
+       echo "index_test  ";
         echo date("Y");
         echo date("m");
         echo date("d");
+        echo '<a href="list">List</a> ';
+        echo '<br>';
+        echo '<a href="calander"> Calender </a>';
+        echo ('<br>');
+        echo '<a href="list">insert</a> ';
     }
 
-    
+
 
     function error($errnumber) {
         echo ' an 404 error occured ' . $errnumber;

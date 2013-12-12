@@ -24,18 +24,27 @@ class Calander extends CI_Controller {
     }
 
     // this is a full month  linked calander for testing
-    // need to get the full  days and ommit their links 
-    function view_calander($month_number, $year_number) {
-
-        $data = array(
-            3 => 'add_reserv/6/3',
-            7 => 'add_reserv/6/7',
-            13 => 'add_reserv/6/13',
-            26 => 'add_reserv/6/26'
-        );
-        echo $this->calendar->generate(2013, 6, $data);
+    // need to get the full  days and ommit their links
+    function view_calander($month, $year) {
+        if (($month == '0') && ($year == '0' )) {
+            $month = $this->month_number;
+            $year = $this->year_number;
+        }
+        echo $month;
+        echo $year;
+        echo $this->month_number;
+        echo $this->year_number;
+        $data = array();
+        $number_of_days = date("t", mktime(0, 0, 0, $month, 1, $year));
+        //$number_of_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        for ($day = 1; $day < $number_of_days + 1; $day++) {
+            $data[$day] = site_url('add_reserv/') . '/' . $year . '/' . $month . '/' . $day;
+        }
+        echo $this->calendar->generate($year, $month, $data);
 
         $this->load->view('test/testview');
     }
+
+
 
 }

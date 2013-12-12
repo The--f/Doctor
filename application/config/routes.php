@@ -40,6 +40,8 @@
 // $route['URL'] = "controller name"
 
 $route['insert'] = 'TestInsert';
+$route ['calander'] = 'Calander/view_calander/0/0';
+$route ['calander/(\d+)/(\d+)'] = 'Calander/view_calander/$1/$2';
 $route['list'] = 'TestList/patients';
 $route['reserv'] = 'Reservation';
 $route['add_reserv/(:num)'] = 'add_reserv/add/$1';
