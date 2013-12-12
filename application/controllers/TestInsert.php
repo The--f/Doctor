@@ -55,7 +55,19 @@ class TestInsert extends CI_Controller {
         echo 'this form has been successfully submitted with all validation being passed. All messages or logic here. Please note
 			sessions have not been used and would need to be added in to suit your app';
     }
-        
+    public function isEmailExist($email) {
+    $this->load->model('Patient');
+    $is_exist = $this->Patient->isEmailExist($email);
+
+    if ($is_exist) {
+        $this->form_validation->set_message(
+            'isEmailExist', 'Email address is already exist.'
+        );    
+        return false;
+    } else {
+        return true;
+    }
+}    
 }
 
 ?>

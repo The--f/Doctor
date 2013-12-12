@@ -51,5 +51,18 @@ class Patient extends CI_Model {
     function List_All() {
         return ($this->db->get('patients'));
     }
+    
+    function isEmailExist($email) {
+    $this->db->select('id');
+    $this->db->from('patients');
+    $this->db->where('email', $email);
+    $query = $this->db->get('Patients');
+
+    if ($query->num_rows() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 }
