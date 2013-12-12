@@ -12,8 +12,8 @@
  */
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Autocomplete extends CI_Controller {
-    
-    
+
+
         function __construct() {
         parent::__construct();
 
@@ -24,8 +24,8 @@ class Autocomplete extends CI_Controller {
     }
 	function index()
 	{
-		$this->load->view('formview');
-	}
+		$this->load->view('TestInsert/formview');
+    }
 
 	function suggestions()
 {
