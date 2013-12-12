@@ -13,5 +13,12 @@
  * @author Feker
  */
 class Occupation extends RDV {
-    //put your code here
+
+    var $client;
+    var $Doctor;
+
+    function __construct() {
+        parent::__construct();
+    }
+
 }

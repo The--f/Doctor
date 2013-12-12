@@ -10,13 +10,11 @@
  *
  * @author dell
  */
-class Patient extends CI_Model
-{
-    var $nomP;
-    var $prenomP;
-    var $ageP;
-    var $telP;
-    var $emailP;
+class Patient extends CI_Model {
+
+    var $nom;
+    var $prenom;
+    var $email;
 
     //put your code here
      function __construct()
@@ -26,36 +24,32 @@ class Patient extends CI_Model
         $this->load->database();
         $this->load->helper('form');
     }
-
-    function insertPatient($nomP, $prenomP, $ageP, $telP, $emailP) {
-//        $nomP = $this->Input->post('nomPatien');
-//        $prenomP = $this->Input->post('prenomPatien');
-//        $ageP = $this->Input->post('agePatien');
-//        $telP = $this->Input->post('telPatien');
-////        $emailP = $this->Input->post('emailPatien');
-        $data = array('nomP'=>$nomP, 'prenomP'=>$prenomP,
-                        'ageP'=>$ageP, 'telP'=>$telP,
-                        'emailP'=>$emailP);
-         $this->db->insert('Patients', $data);
-    }
-
     /**
-     * function SaveForm()
+     * function InsertPatient()
      *
-     * insert form data
-     * @param $form_data - array
+     * insert given patient Data into database
+     * @param $data - array
      * @return Bool - TRUE or FALSE
      */
-    function SaveForm($form_data) {
-        $this->db->insert('Patients', $form_data);
+    function insertPatient($nomP, $prenomP, $emailP) {
 
+        $data = array('nom'=>$nomP, 'prenom'=>$prenomP,'email'=>$emailP);
+
+         $this->db->insert('Patients', $data);
         if ($this->db->affected_rows() == '1') {
             return TRUE;
+        } else {
+            return FALSE;
         }
+    }
 
-        return FALSE;
+    //TODO: search for Patients based on email
+    function findPatient($needle_mail) {
+        $this->db->get_where('patients', array('email' => $needle_mail));
+    }
+
+    function List_All() {
+        return ($this->db->get('patients'));
     }
 
 }
-
-
