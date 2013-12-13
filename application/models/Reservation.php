@@ -14,6 +14,7 @@
 class Reservation extends CI_Model {
 
     protected $date_time_start;
+    protected $lenght;
     protected $Patient;
 
     public function __construct() {
@@ -21,9 +22,13 @@ class Reservation extends CI_Model {
         $this->load->database();
     }
 
-    function insertReservation($datetime, $lenght, $Patient_id) {
+    function insertReservation($date_time, $Patient_id, $len = 1) {
 
-        $data = array('date_time_start' => $datetime, 'patient' => $Patient_id);
+        $data = array(
+            'date_time_start' => $date_time,
+            'patient_id' => $Patient_id,
+            'lenght' => $len
+            );
         $this->db->insert('Reservation', $data);
         if ($this->db->affected_rows() == '1') {
             return TRUE;
@@ -33,7 +38,7 @@ class Reservation extends CI_Model {
     }
 
     //TODO: search for Reservtions based on Patient
-    function findPatient($needle_patient_id) {
+    function findReservation($needle_patient_id) {
         $this->db->get_where('Reservation', array('patient' => $needle_patient_id));
     }
 

@@ -44,7 +44,8 @@ $route ['calander'] = 'Calander/view_calander/0/0';
 $route ['calander/(\d+)/(\d+)'] = 'Calander/view_calander/$1/$2';
 $route['list'] = 'TestList/patients';
 $route['reserv'] = 'Reservation';
-$route['add_reserv/(:num)/(:num)/(:num)'] = 'add_reserv/add/$1';
+// /add_reserv/year/month/day
+$route['add_reserv/(:num)/(:num)/(:num)'] = 'add_reserv/add/$1/$2/$3';
 $route['default_controller'] = 'test_control';
 $route['404_override'] = 'test_control/error/404';
 

@@ -20,6 +20,7 @@ class Calander extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->library('calendar');
+        $this->load->library('session');
         $month_number = date("m");
         $year_number = date("Y");
     }

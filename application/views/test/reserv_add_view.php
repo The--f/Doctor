@@ -11,7 +11,15 @@
  *
  * @author Feker
  */
-echo ("This is test view BBB 22  ");
+echo ("Reservation on :   ");
+echo ("<br>");
+echo $year;
+echo ("<br>");
+echo $month;
 echo ("<br>");
 echo $day;
+echo ("<br>");
+echo $patient;
+echo '<br>';
+echo ($confirm ? 'confirmed' : 'notconfirmed');
 ?>
