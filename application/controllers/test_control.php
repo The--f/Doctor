@@ -13,8 +13,15 @@
  * @author Feker
  */
 class test_control extends CI_Controller {
-   function index() {
-       echo "index_test  ";
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->library('session');
+    }
+
+    function index() {
+       echo "index_test";
+
         echo date("Y");
         echo date("m");
         echo date("d");

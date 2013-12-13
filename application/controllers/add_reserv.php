@@ -15,9 +15,10 @@ class add_reserv extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        }
+        $this->load->model('Reservation');
+    }
 
-    function add($day) {
+    function add($year, $day) {
         $data = array('day' => $day);
         $this->load->view("test/testviewnb2", $data);
     }

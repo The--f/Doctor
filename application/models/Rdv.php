@@ -13,12 +13,10 @@
  * @author Feker
  */
 class Rdv extends CI_Model {
-    protected $date_time_start;
+
 
     function __construct() {
         parent::__construct();
-        $current_date_time = TRUE;
-       
     }
 
 }

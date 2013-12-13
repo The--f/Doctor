@@ -18,22 +18,25 @@ class Calander extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('url');
         $this->load->library('calendar');
         $month_number = date("m");
         $year_number = date("Y");
     }
 
     // this is a full month  linked calander for testing
-    // need to get the full  days and ommit their links
+    // need to get the full days and ommit their links
     function view_calander($month, $year) {
-        if (($month == '0') && ($year == '0' )) {
+        $this->month_number = date("m");
+        $this->year_number = date("Y");
+        if (($month == '0') || ($year == NULL )) {
             $month = $this->month_number;
             $year = $this->year_number;
         }
-        echo $month;
-        echo $year;
-        echo $this->month_number;
-        echo $this->year_number;
+        echo '$month;=' . $month;
+        echo 'year = ' . $year;
+        echo '$this->month_number' . $this->month_number . '**';
+        echo '$this->year_number' . $this->year_number;
         $data = array();
         $number_of_days = date("t", mktime(0, 0, 0, $month, 1, $year));
         //$number_of_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
