@@ -42,7 +42,7 @@ class Reservation extends CI_Model {
         $this->db->get_where('Reservation', array('patient' => $needle_patient_id));
     }
 
-    function findReservation_day_hour($year, $month, $day, $hour) {
+    function findReservations_per_day_hour($year, $month, $day, $hour) {
         
     }
 

@@ -40,6 +40,8 @@
 // $route['URL'] = "controller name"
 
 $route['insert'] = 'TestInsert';
+$route ['login'] = 'test_control/login';
+$route ['logout'] = 'test_control/logout';
 $route ['calander/(:num)/(:num)'] = 'Calander/view_calander/$1/$2';
 $route ['calander'] = 'Calander/view_calander/0/0';
 $route ['calander/day/(:num)/(:num)/(:num)'] = 'Calander/view_day/$1/$2/$3';

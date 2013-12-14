@@ -12,6 +12,7 @@
  */
 class Patient extends CI_Model {
 
+    var $id;
     var $nom;
     var $prenom;
     var $email;
@@ -51,7 +52,7 @@ class Patient extends CI_Model {
     function List_All() {
         return ($this->db->get('patients'));
     }
-    
+
     function isEmailExist($email) {
     $this->db->select('id');
     $this->db->from('patients');
