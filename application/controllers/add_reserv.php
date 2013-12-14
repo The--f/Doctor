@@ -26,13 +26,22 @@ class add_reserv extends CI_Controller {
         $hour = $this->input->post('hour');
         $patient_name = $this->session->userdata('user_name');
         $patient_mail = $this->session->userdata('user_mail');
+        $data = array(
+            'day' => $day,
+            'month' => $month,
+            'year' => $year,
+            'hour' => $hour,
+            'patient_name' => $patient_name,
+            'patient_mail' => $patient_mail
+        );
         if ($this->Reservation->insertReservation(
-                        date('Y-m-d H:i:s', mktime($hour, 0, 0, $month, $day, $year)), $this->session->userdata('user_id'))
+                date('Y-m-d H:i:s', mktime($hour, 0, 0, $month, $day, $year)), $this->session->userdata('user_id'))
         ) {
             $data ['confirm'] = TRUE;
         } else {
             $data ['confirm'] = FALSE;
-        }
+          }
+        $this->load->view("header");
         $this->load->view("test/reserv_add_view", $data);
     }
 
