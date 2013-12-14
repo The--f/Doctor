@@ -38,8 +38,12 @@ class Reservation extends CI_Model {
     }
 
     //TODO: search for Reservtions based on Patient
-    function findReservation($needle_patient_id) {
+    function findReservation_patient($needle_patient_id) {
         $this->db->get_where('Reservation', array('patient' => $needle_patient_id));
+    }
+
+    function findReservation_day_hour($day, $hour) {
+        
     }
 
     function List_All() {

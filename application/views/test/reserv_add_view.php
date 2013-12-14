@@ -11,15 +11,17 @@
  *
  * @author Feker
  */
+echo ($confirm ? 'confirmed ' : 'not confirmed');
+echo '  reservation for : ';
+echo $patient_name;
+echo '<br>';
 echo ("Reservation on :   ");
 echo ("<br>");
 echo $year;
-echo ("<br>");
+echo ("/");
 echo $month;
-echo ("<br>");
+echo ("/");
 echo $day;
 echo ("<br>");
-echo $patient;
-echo '<br>';
-echo ($confirm ? 'confirmed' : 'notconfirmed');
+echo (" at  : " . $hour . " : 00 ");
 ?>

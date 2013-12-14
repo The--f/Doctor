@@ -19,17 +19,15 @@ class add_reserv extends CI_Controller {
         $this->load->model('Reservation');
     }
 
-    function add($year, $month, $day) {
-        $data = array('day' => $day,
-            'month' => $month,
-            'year' => $year,
-            'day' => $day,
-            'patient' => $this->session->userdata('user_name')
-        );
-        $dt = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year));
-        echo 'DT  = ' . $dt . '<br>';
+    function add() {
+        $year = $this->input->post('year');
+        $month = $this->input->post('month');
+        $day =$this->input->post('day');
+        $hour = $this->input->post('hour');
+        $patient_name = $this->session->userdata('user_name');
+        $patient_mail = $this->session->userdata('user_mail');
         if ($this->Reservation->insertReservation(
-                        date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year)), $this->session->userdata('user_id'))
+                        date('Y-m-d H:i:s', mktime($hour, 0, 0, $month, $day, $year)), $this->session->userdata('user_id'))
         ) {
             $data ['confirm'] = TRUE;
         } else {
