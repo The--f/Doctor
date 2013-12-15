@@ -38,7 +38,7 @@
 |
 */
 // $route['URL'] = "controller name"
-
+$route ['admin'] = 'backoffice_control/configurations';
 $route ['insert'] = 'TestInsert';
 $route ['login'] = 'main_control/login';
 $route ['logout'] = 'main_control/logout';

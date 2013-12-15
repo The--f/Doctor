@@ -42,20 +42,27 @@ class Calander extends CI_Controller {
             $month = $this->month_number;
             $year = $this->year_number;
         }
-        $day = 1;
+        $day = date("j");
+        // TODO : get the weekly day of rest from configuration and ommit it
         $calender_data = array();
         $number_of_days = date("t", mktime(0, 0, 0, $month, $day, $year));
+        $weekly_day_off = $this->db->query('select value from configurations where name = "w_day_off"')->result_array()[0]['value'];
         if (mktime(0, 0, 0, $month, $day, $year) < mktime(0, 0, 0, date("n"), 1, date("Y"))) {
             $calender_data = NULL;
         } else {
-            for ($day = date("j"); $day < $number_of_days; $day++) {
+            for ($day = date("j"); $day < $number_of_days + 1; $day++) {
                 // a working day is empty per se
                 $calender_data[$day] = site_url('calander/day') . '/' . $year . '/' . $month . '/' . $day;
             }
-            for ($day = intval(date("j")); $day < $number_of_days; $day++) {
+            for ($day = intval(date("j")); $day < $number_of_days + 1; $day++) {
                 $query_result = $this->Reservation->findReservations_per_day($year, $month, $day);
                 if ($query_result->num_rows() == 7) {
                     //except some full days
+                    $calender_data[$day] = NULL;
+                }
+            }
+            for ($day = intval(date("j")); $day < $number_of_days + 1; $day++) {
+                if (date('N', mktime(0, 0, 0, $month, $day, $year)) == $weekly_day_off) {
                     $calender_data[$day] = NULL;
                 }
             }
@@ -76,11 +83,17 @@ class Calander extends CI_Controller {
             'month' => $m,
             'day' => $d
         );
+        // Get the starting time and the lunch break time from configuration
+        $visit_start = $this->db->query('select value from configurations where name = "visit_strt"')->result_array()[0]['value'];
+        $visit_end = $this->db->query('select value from configurations where name = "visit_end"')->result_array()[0]['value'];
+        $lunch_break_start = $this->db->query('select value from configurations where name = "lnch_brk_s"')->result_array()[0]['value'];
+        $lunch_break_end = $this->db->query('select value from configurations where name = "lnch_brk_e"')->result_array()[0]['value'];
+        $day_data['now'] = date("Y/m/j H:j:s ", mktime());
         // a day is empty per se
-        for ($i = 9; $i < 12; $i++) {
+        for ($i = $visit_start; $i < $lunch_break_start; $i++) {
             $day_data ['hour'][$i] = TRUE;
         }
-        for ($i = 14; $i < 18; $i++) {
+        for ($i = $lunch_break_end; $i <= $visit_end; $i++) {
             $day_data ['hour'][$i] = TRUE;
         }
         $query_result = $this->Reservation->findReservations_per_day($y, $m, $d);
