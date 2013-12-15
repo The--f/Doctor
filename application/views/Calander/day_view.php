@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>day </title>
+        <title><?php echo $day . '/' . $month . '/' . $year; ?>  </title>
     </head>
     <body>
         <form action="<?php echo site_url('add_reserv'); ?>" method="post" >
@@ -15,11 +15,13 @@ and open the template in the editor.
             <input type="hidden" name="month" value="<?php echo $month; ?>" >
             <input type="hidden" name="year" value="<?php echo $year; ?>" >
             <?php
-        foreach ($hour as $key => $value) {
-             echo ($value ? '<input type="radio" name="hour" value="' . $key . '" /> ' : 'taken') . $key . '<t> : 00  <br/>';
+        foreach ($hour as $hour_number => $taken_or_not) {
+    echo '<input type="radio" name="hour" value="' . $hour_number .
+              ( $taken_or_not ? '"' : '"disabled=TRUE"' ) . '" /> ' . $hour_number . '<t> : 00  <br/>';
 }
             ?>
             <input type="submit" value="confirm" name="confirm"/>
-            </form>
+            <input type="button" onclick="history.back();" value="Back">
+        </form>
     </body>
 </html>

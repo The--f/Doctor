@@ -19,6 +19,7 @@ class TestList extends CI_Controller {
         $this->load->database();
         $this->load->model('Patient');
         $this->load->helper('url');
+        $this->load->library('session');
         $this->load->library('grocery_CRUD');
     }
 
@@ -29,6 +30,10 @@ class TestList extends CI_Controller {
     }
 
     function _example_output($output = null) {
+        if (!$this->session->userdata('user_name')) {
+            redirect('main_control');
+        }
+        $this->load->view('main/header');
         $this->load->view('grocery_view', $output);
     }
 

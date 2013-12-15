@@ -39,9 +39,9 @@
 */
 // $route['URL'] = "controller name"
 
-$route['insert'] = 'TestInsert';
-$route ['login'] = 'test_control/login';
-$route ['logout'] = 'test_control/logout';
+$route ['insert'] = 'TestInsert';
+$route ['login'] = 'main_control/login';
+$route ['logout'] = 'main_control/logout';
 $route ['calander/(:num)/(:num)'] = 'Calander/view_calander/$1/$2';
 $route ['calander'] = 'Calander/view_calander/0/0';
 $route ['calander/day/(:num)/(:num)/(:num)'] = 'Calander/view_day/$1/$2/$3';
@@ -49,7 +49,7 @@ $route ['list'] = 'TestList/patients';
 $route ['reserv'] = 'Reservation';
 // /add_reserv/year/month/day
 $route['add_reserv'] = 'add_reserv/add';
-$route['default_controller'] = 'test_control';
+$route['default_controller'] = 'main_control';
 $route['404_override'] = '';
 
 

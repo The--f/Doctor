@@ -2,7 +2,7 @@
 // Change the css classes to suit your needs
 
 $attributes = array('class' => '', 'id' => '');
-echo form_open('test_control/login', $attributes);
+echo form_open('main_control/login', $attributes);
 ?>
 
 <p>

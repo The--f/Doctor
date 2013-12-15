@@ -1,21 +1,21 @@
 <?php
 
 /**
- * Description of test_control
+ * Description of main_control
  * un simple controlleur pour test
  *
  * @author Feker
  */
-class test_control extends CI_Controller {
+class main_control extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->helper('form');
         $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
         $this->load->library('session');
     }
 
     function login() {
-        $this->load->view('login/login_view');
         $this->load->database();
         $this->load->model('Patient');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|valid_email|max_length[20]');
@@ -37,25 +37,21 @@ class test_control extends CI_Controller {
                         'user_mail' => $row->email
                     ));
                 }
+
+                redirect('main_control');
             }
         }
     }
 
     function logout() {
         $this->session->sess_destroy();
-        redirect('test_control');
+        redirect('main_control');
     }
 
     function index() {
 
-        echo 'rrrr ';
-        $this->load->view('reserv/header_view');
-
-        echo '<a href="list">List</a> ';
-        echo '<br>';
-        echo '<a href="calander"> Calender </a>';
-        echo ('<br>');
-        echo '<a href="list">insert</a> ';
+        $this->load->view('main/header');
+        $this->load->view('main/menu');
     }
     function error($errnumber) {
         echo ' an 404 error occured ' . $errnumber;

@@ -13,9 +13,9 @@
  */
 class Reservation extends CI_Model {
 
-    protected $date_time_start;
-    protected $lenght;
-    protected $Patient;
+   var $date_time_start;
+    var $lenght;
+    var $Patient;
 
     public function __construct() {
         parent::__construct();
@@ -42,8 +42,18 @@ class Reservation extends CI_Model {
         $this->db->get_where('Reservation', array('patient' => $needle_patient_id));
     }
 
-    function findReservations_per_day_hour($year, $month, $day, $hour) {
-        
+    function findReservations_per_day($year, $month, $day) {
+         $this->db->select()->from('reservation')->like(
+                'date_time_start', date('Y-m-d', mktime(0, 0, 0, $month, $day, $year)));
+        $query = $this->db->get();
+        return ($query);
+    }
+
+    function findReservations_per_month($year, $month) {
+        $this->db->select()->from('reservation')->like(
+                'date_time_start', date('Y-m', mktime(0, 0, 0, $month, 1, $year)));
+        $query = $this->db->get();
+        return ($query);
     }
 
     function List_All() {
