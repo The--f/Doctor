@@ -40,6 +40,8 @@ class main_control extends CI_Controller {
 
                 redirect('main_control');
             }
+            else 
+                redirect ('TestInsert');
         }
     }
 

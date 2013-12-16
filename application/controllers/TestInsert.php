@@ -43,7 +43,7 @@ class TestInsert extends CI_Controller {
             // run insert model to write data to db
 
               if ($this->Patient->insertPatient($form_data['nom'], $form_data ['prenom'], $form_data ['email']) == TRUE) { // the information has therefore been successfully saved in the db
-                redirect('TestInsert/success');   // or whatever logic needs to occur
+                redirect('main_control');   // or whatever logic needs to occur
             } 
             else {
                 echo 'An error occurred saving your information. Please try again later';
