@@ -16,6 +16,7 @@ class add_reserv extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('date');
+         $this->load->library('session');
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('Reservation');
