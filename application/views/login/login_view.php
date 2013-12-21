@@ -35,7 +35,7 @@ echo form_open('main_control/login', $attributes);
 ?>
     <label for="email">Email <span class="required">*</span></label>
 <?php echo form_error('email'); ?>
-    <br/><input id="idEmail" type="text" name="email" maxlength="20" value="<?php echo set_value('email'); ?>"  />
+    <br/><input id="idEmail" type="text" name="email" maxlength="50" value="<?php echo set_value('email'); ?>"  />
 </p>
 
 

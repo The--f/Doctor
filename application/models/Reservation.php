@@ -16,22 +16,21 @@ class Reservation extends CI_Model {
    var $date_time_start;
     var $lenght;
     var $Patient;
-
     public function __construct() {
         parent::__construct();
         $this->load->database();
     }
-
+    
     function insertReservation($date_time, $Patient_id, $len = 1) {
 
         $data = array(
             'date_time_start' => $date_time,
             'patient_id' => $Patient_id,
             'lenght' => $len
-            );
-        $this->db->insert('Reservation', $data);
+            );   
         if ($this->db->affected_rows() == '1') {
             return TRUE;
+            redirect('./email/SendingMail', 'location');
         } else {
             return FALSE;
         }

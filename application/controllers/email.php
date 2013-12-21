@@ -15,6 +15,7 @@ class Email extends CI_Controller {
     function __construct()
     {
         parent::__construct();
+        $this->load->driver('session');
     }
     function SendingMail()
     {
@@ -25,13 +26,14 @@ class Email extends CI_Controller {
           'smtp_user' => 'doctorreservation@gmail.com',
           'smtp_pass' => 'doctor123456789' 
         );
-        
+        $usermail = $this->session->get('user_mail');
+        $username = $this->session->get('user_name');
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->From('doctorreservation@gmail.com');
-        $this->email->to('doctorreservation@gmail.com');
+        $this->email->to($usermail);
         $this->email->subject('test');
-        $this->email->message('test');
+        $this->email->message('test'.$username);
         $path = $this->config->item('server_root');
         $file = $path.'./attachments/test.txt';
         $this->email->attach($file);
