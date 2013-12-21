@@ -40,13 +40,14 @@ class add_reserv extends CI_Controller {
         if (mktime($hour, 0, 0, $month, $day, $year) > mktime(date("H"), 0, 0, date("n"), date("j"), date("Y"))) {
                 if ($this->Reservation->insertReservation(
                             date('Y-m-d H:i:s', mktime($hour, 0, 0, $month, $day, $year)), $this->session->userdata('user_id'))) {
-                $data ['confirm'] = TRUE;
+                $data ['confirm'] = 1;
+                //echo 'conf';
             } else {
-                $data ['confirm'] = FALSE;
+                $data ['confirm'] = 2;
             }
         } else {
-            $data ['confirm'] = FALSE;
-            //redirect(site_url('calander'));
+            $data ['confirm'] = 3;
+            redirect(site_url('calander'));
         }
         $this->load->view('main/header');
         $this->load->view('add_reserv/reserv_add_view', $data);

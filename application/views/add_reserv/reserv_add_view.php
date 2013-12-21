@@ -4,7 +4,8 @@
  *
  * @author Feker
  */
-echo ($confirm ? 'confirmed ' : 'not confirmed');
+//echo ($confirm ? 'confirmed ' : 'not confirmed');
+echo $confirm;
 echo '  reservation for : ';
 echo $patient_name;
 echo '<br>';
