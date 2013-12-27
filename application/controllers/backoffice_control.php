@@ -41,7 +41,7 @@ class backoffice_control extends CI_Controller {
         $crud->columns('patient_id', 'date_time_start');
         $crud->display_as('patient_id', 'Nom');
         $crud->display_as('date_time_start', 'Date');
-        $crud->set_relation('patient_id', 'patients', '{nom} {prenom} ');
+        $crud->set_relation('patient_id', 'patients', '{nom}   {prenom} ');
         $crud->unset_add();
         $crud->unset_texteditor();
         $output = $crud->render();
