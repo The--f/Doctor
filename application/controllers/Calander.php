@@ -20,11 +20,13 @@ class Calander extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('date');
+        $this->load->helper('form');
         $prefs = array( 'show_next_prev' => TRUE, 'next_prev_url' => site_url('calander'));
         $this->load->library('calendar', $prefs);
         $this->load->library('session');
         $this->load->database();
         $this->load->model('Reservation');
+
         $month_number = date("m");
         $year_number = date("Y");
     }
@@ -50,11 +52,13 @@ class Calander extends CI_Controller {
         if (mktime(0, 0, 0, $month, $day, $year) < mktime(0, 0, 0, date("n"), 1, date("Y"))) {
             $calender_data = NULL;
         } else {
-            for ($day = date("j"); $day < $number_of_days + 1; $day++) {
+
+            $start = ( $month == date('m') ? intval(date("j")) : 1 );
+            for ($day = $start; $day < $number_of_days + 1; $day++) {
                 // a working day is empty per se
                 $calender_data[$day] = site_url('calander/day') . '/' . $year . '/' . $month . '/' . $day;
             }
-            for ($day = intval(date("j")); $day < $number_of_days + 1; $day++) {
+            for ($day = $start; $day < $number_of_days + 1; $day++) {
                 $query_result = $this->Reservation->findReservations_per_day($year, $month, $day);
                 if ($query_result->num_rows() == 7) {
                     //except some full days

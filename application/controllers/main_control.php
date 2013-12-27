@@ -9,9 +9,11 @@
 class main_control extends CI_Controller {
     public function __construct() {
         parent::__construct();
+        $this->load->database();
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->library('grocery_CRUD');
         $this->load->library('session');
     }
 
@@ -60,6 +62,31 @@ class main_control extends CI_Controller {
             $this->load->view('main/menu');
         }
     }
+
+    function reservations() {
+        $crud = new grocery_CRUD();
+        $crud->set_table('reservation');
+        $crud->columns('patient_id', 'date_time_start');
+        $crud->where('patient_id', $this->session->userdata('user_id'));
+        $crud->display_as('patient_id', 'Nom');
+        $crud->display_as('date_time_start', 'Date');
+        $crud->set_relation('patient_id', 'patients', '{nom} {prenom} ( {email} )');
+        $crud->unset_add();
+        $crud->unset_texteditor();
+        $crud->unset_read();
+        $crud->unset_delete();
+        $crud->unset_edit();
+        $crud->unset_export();
+        $crud->unset_print();
+        $output = $crud->render();
+        $this->_example_output($output);
+    }
+
+    function _example_output($output = null) {
+        $this->load->view('main/header');
+        $this->load->view('grocery_view', $output);
+    }
+
     function error($errnumber) {
         echo ' an 404 error occured ' . $errnumber;
     }

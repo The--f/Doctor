@@ -36,8 +36,36 @@ class backoffice_control extends CI_Controller {
         }
     }
 
+    function reservation() {
+        $crud = new grocery_CRUD();
+        $crud->columns('patient_id', 'date_time_start');
+        $crud->display_as('patient_id', 'Nom');
+        $crud->display_as('date_time_start', 'Date');
+        $crud->set_relation('patient_id', 'patients', '{nom} {prenom} ( {email} )');
+        $crud->unset_add();
+        $crud->unset_texteditor();
+        $output = $crud->render();
+        $this->_example_output($output);
+    }
+
+    function patients() {
+        $crud = new grocery_CRUD();
+        $crud->required_fields('nom', 'prenom', 'email');
+        $crud->where('id !=', 1);
+        $output = $crud->render();
+        $this->_example_output($output);
+    }
+
     function configurations() {
-        $output = $this->grocery_crud->render();
+        $crud = new grocery_CRUD();
+        $crud->columns('comment', 'value');
+        $crud->fields('comment', 'value');
+        $crud->field_type('comment', 'readonly');
+        $crud->display_as('comment', 'Explication');
+        $crud->unset_add();
+        $crud->unset_delete();
+        $crud->unset_texteditor();
+        $output = $crud->render();
         $this->_example_output($output);
     }
     function _example_output($output = null) {
