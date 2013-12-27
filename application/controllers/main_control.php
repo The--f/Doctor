@@ -71,13 +71,13 @@ class main_control extends CI_Controller {
         $crud->display_as('patient_id', 'Nom');
         $crud->display_as('date_time_start', 'Date');
         $crud->set_relation('patient_id', 'patients', '{nom} {prenom} ( {email} )');
+        $crud->unset_export();
+        $crud->unset_print();
         $crud->unset_add();
         $crud->unset_texteditor();
         $crud->unset_read();
         $crud->unset_delete();
         $crud->unset_edit();
-        $crud->unset_export();
-        $crud->unset_print();
         $output = $crud->render();
         $this->_example_output($output);
     }
