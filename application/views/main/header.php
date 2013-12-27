@@ -1,5 +1,10 @@
 
-<div id="header"> <div id="login" >
+<div id="header">
+    <?php
+    echo '<a href="' . base_url() . '">home</a> ';
+    echo '<br>';
+?>
+    <div id="login" >
         <?php
         if (!$this->session->userdata('user_name')) {
             echo 'not logged in ';

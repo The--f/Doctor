@@ -1,16 +1,16 @@
 
 <html>
-    <head>    
-        <link rel="stylesheet" href="../css/style.css">
+    <head>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>/css/style.css">
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>/css/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
         <script type="text/javascript">
-$(document).ready(function() {
+    $(document).ready(function() {
 	$(function() {
 		$( "#idEmail" ).autocomplete({
 			source: function(request, response) {
-				$.ajax({ url: "<?php echo site_url('autocomplete/suggestions'); ?>",
+				$.ajax({ url: "<?php echo site_url('autocomplete/suggestions/'); ?>",
 				data: { term: $("#idEmail").val()},
 				dataType: "json",
 				type: "POST",
