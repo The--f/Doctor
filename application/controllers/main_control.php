@@ -20,7 +20,7 @@ class main_control extends CI_Controller {
     function login() {
         $this->load->database();
         $this->load->model('Patient');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|valid_email|max_length[20]');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|valid_email|max_length[30]');
         $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
         if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
             $this->load->view('login/login_view');
