@@ -11,7 +11,7 @@
  *
  * @author Feker
  */
-echo ("This is test view BBB 22  ");
-echo ("<br>");
-echo $day;
+echo ("This is test view ");
+echo ('<br/><a href="list">list</a>');
+echo ('<a href="insert">insert</a>')
 ?>

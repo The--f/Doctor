@@ -12,6 +12,7 @@
  * @author Feker
  */
 echo ("This is test view ");
+echo 'logged as ' . $this->session->userdata('user_name');
 echo ('<a href="list">list</a>');
 echo ("<br>");
 echo ('<a href="insert">insert</a>')

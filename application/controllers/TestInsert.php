@@ -29,7 +29,8 @@ class TestInsert extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
             $this->load->view('TestInsert/formview');
-        } else { // passed validation proceed to post success logic
+        } 
+        else { // passed validation proceed to post success logic
             // build array for the model
 
             $form_data = array(
@@ -41,10 +42,10 @@ class TestInsert extends CI_Controller {
             //  if not found  then :
             // run insert model to write data to db
 
-
-            if ($this->Patient->insertPatient($form_data['nom'], $form_data ['prenom'], $form_data ['email']) == TRUE) { // the information has therefore been successfully saved in the db
-                redirect('TestInsert/success');   // or whatever logic needs to occur
-            } else {
+              if ($this->Patient->insertPatient($form_data['nom'], $form_data ['prenom'], $form_data ['email']) == TRUE) { // the information has therefore been successfully saved in the db
+                redirect('main_control');   // or whatever logic needs to occur
+            } 
+            else {
                 echo 'An error occurred saving your information. Please try again later';
                 // Or whatever error handling is necessary
             }
@@ -55,7 +56,19 @@ class TestInsert extends CI_Controller {
         echo 'this form has been successfully submitted with all validation being passed. All messages or logic here. Please note
 			sessions have not been used and would need to be added in to suit your app';
     }
-        
+    public function isEmailExist($email) {
+    $this->load->model('Patient');
+    $is_exist = $this->Patient->isEmailExist($email);
+
+    if ($is_exist) {
+        $this->form_validation->set_message(
+            'isEmailExist', 'Email address is already exist.'
+        );    
+        return false;
+    } else {
+        return true;
+    }
+}    
 }
 
 ?>

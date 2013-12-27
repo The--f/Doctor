@@ -12,6 +12,7 @@
  */
 class Patient extends CI_Model {
 
+    var $id;
     var $nom;
     var $prenom;
     var $email;
@@ -44,12 +45,29 @@ class Patient extends CI_Model {
     }
 
     //TODO: search for Patients based on email
-    function findPatient($needle_mail) {
-        $this->db->get_where('patients', array('email' => $needle_mail));
+    function findPatient_mail($needle_mail) {
+        return $this->db->get_where('patients', array('email' => $needle_mail));
+    }
+
+    function findPatient_id($needle_id) {
+        return $this->db->get_where('patients', array('id' => $needle_id));
     }
 
     function List_All() {
         return ($this->db->get('patients'));
     }
+
+    function isEmailExist($email) {
+    $this->db->select('id');
+    $this->db->from('patients');
+    $this->db->where('email', $email);
+    $query = $this->db->get('Patients');
+
+    if ($query->num_rows() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 }

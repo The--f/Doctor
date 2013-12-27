@@ -39,12 +39,24 @@
 */
 // $route['URL'] = "controller name"
 
-$route['insert'] = 'TestInsert';
-$route['list'] = 'TestList/patients';
-$route['reserv'] = 'Reservation';
-$route['add_reserv/(:num)'] = 'add_reserv/add/$1';
-$route['default_controller'] = 'test_control';
-$route['404_override'] = 'test_control/error/404';
+$route ['admin/calander/(:num)/(:num)'] = 'backoffice_control/calander/$1/$2';
+$route ['admin/calander'] = 'backoffice_control/calander/0/0';
+$route ['admin/(:any)'] = 'backoffice_control/$1';
+$route ['admin'] = 'backoffice_control';
+
+$route ['insert'] = 'TestInsert';
+$route ['login'] = 'main_control/login';
+$route ['logout'] = 'main_control/logout';
+
+$route ['calander/(:num)/(:num)'] = 'Calander/view_calander/$1/$2';
+$route ['calander'] = 'Calander/view_calander/0/0';
+$route ['calander/day/(:num)/(:num)/(:num)'] = 'Calander/view_day/$1/$2/$3';
+$route ['list'] = 'TestList/patients';
+$route ['reserv'] = 'Reservation';
+/* /add_reserv/year/month/day   */
+$route['add_reserv'] = 'add_reserv/add';
+$route['default_controller'] = 'main_control';
+$route['404_override'] = '';
 
 
 
