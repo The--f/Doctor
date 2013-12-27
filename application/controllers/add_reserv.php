@@ -16,7 +16,7 @@ class add_reserv extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('date');
-         $this->load->library('session');
+        $this->load->library('session');
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('Reservation');
@@ -40,13 +40,13 @@ class add_reserv extends CI_Controller {
         if (mktime($hour, 0, 0, $month, $day, $year) > mktime(date("H"), 0, 0, date("n"), date("j"), date("Y"))) {
                 if ($this->Reservation->insertReservation(
                             date('Y-m-d H:i:s', mktime($hour, 0, 0, $month, $day, $year)), $this->session->userdata('user_id'))) {
-                $data ['confirm'] = 1;
+                $data ['confirm'] = TRUE;
                 //echo 'conf';
             } else {
-                $data ['confirm'] = 2;
+                $data ['confirm'] = FALSE;
             }
         } else {
-            $data ['confirm'] = 3;
+            $data ['confirm'] = FALSE;
             redirect(site_url('calander'));
         }
         $this->load->view('main/header');

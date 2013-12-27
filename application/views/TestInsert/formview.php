@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>    
+    <head>
         <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -36,7 +36,9 @@ echo form_open('TestInsert', $attributes);
 
 
 <p>
-<?php echo form_submit('submit', 'Submit'); ?>
+    <input type="button" onclick="history.back();" value="Back">
+    <?php echo form_submit('submit', 'Submit'); ?>
+
 </p>
 
 <?php echo form_close(); ?>

@@ -28,7 +28,7 @@ class main_control extends CI_Controller {
             );
             $this->db->select('id , nom, prenom, email')->from('patients')->where('email', $form_data['email'])->limit(1);
             $query = $this->db->get();
-            if ($query->num_rows() > 0) {
+            if ($query->num_rows() == 1) {
                 foreach ($query->result('Patient') as $row) {
                     $this->session->set_userdata(array(
                         'user_id' => $row->id,
@@ -40,7 +40,7 @@ class main_control extends CI_Controller {
 
                 redirect('main_control');
             }
-            else 
+            else
                 redirect ('TestInsert');
         }
     }
@@ -51,9 +51,14 @@ class main_control extends CI_Controller {
     }
 
     function index() {
-
-        $this->load->view('main/header');
-        $this->load->view('main/menu');
+        $this->load->database();
+        $admin_username = $this->db->query('select value from configurations where name = "admin_user"')->row()->value;
+        if (($this->session->userdata('user_name') == $admin_username)) {
+            redirect('admin/index');
+        } else {
+            $this->load->view('main/header');
+            $this->load->view('main/menu');
+        }
     }
     function error($errnumber) {
         echo ' an 404 error occured ' . $errnumber;

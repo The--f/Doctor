@@ -45,8 +45,12 @@ class Patient extends CI_Model {
     }
 
     //TODO: search for Patients based on email
-    function findPatient($needle_mail) {
-        $this->db->get_where('patients', array('email' => $needle_mail));
+    function findPatient_mail($needle_mail) {
+        return $this->db->get_where('patients', array('email' => $needle_mail));
+    }
+
+    function findPatient_id($needle_id) {
+        return $this->db->get_where('patients', array('id' => $needle_id));
     }
 
     function List_All() {

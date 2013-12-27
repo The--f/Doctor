@@ -24,12 +24,12 @@ class Email extends CI_Controller {
           'smtp_host' => 'smtp.googlemail.com',
           'smtp_port' => 25,
           'smtp_user' => 'doctorreservation@gmail.com',
-          'smtp_pass' => 'doctor123456789' 
+          'smtp_pass' => 'doctor123456789'
         );
         $usermail = $this->session->get('user_mail');
         $username = $this->session->get('user_name');
         $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
+        $this->email->set_newline('\r\n');
         $this->email->From('doctorreservation@gmail.com');
         $this->email->to($usermail);
         $this->email->subject('test');

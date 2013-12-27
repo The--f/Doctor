@@ -30,7 +30,7 @@ class Calander extends CI_Controller {
     }
 
     // this is a full month  linked calander for testing
-    // need to get the full days and ommit their links
+    // need to get the full days and ommit their links  --Done
     function view_calander($year, $month) {
         //LOGIN TEST :
         if (!$this->session->userdata('user_name')) {
@@ -46,7 +46,7 @@ class Calander extends CI_Controller {
         // TODO : get the weekly day of rest from configuration and ommit it
         $calender_data = array();
         $number_of_days = date("t", mktime(0, 0, 0, $month, $day, $year));
-        $weekly_day_off = $this->db->query('select value from configurations where name = "w_day_off"')->row()->value;
+        $weekly_day_off = $this->db->query('select value from configurations where name = "weekly_day_off"')->row()->value;
         if (mktime(0, 0, 0, $month, $day, $year) < mktime(0, 0, 0, date("n"), 1, date("Y"))) {
             $calender_data = NULL;
         } else {
@@ -86,8 +86,8 @@ class Calander extends CI_Controller {
         // Get the starting time and the lunch break time from configuration
         $visit_start = $this->db->query('select value from configurations where name = "visit_strt"')->row()->value;
         $visit_end = $this->db->query('select value from configurations where name = "visit_end"')->row()->value;
-        $lunch_break_start = $this->db->query('select value from configurations where name = "lnch_brk_s"')->row()->value;
-        $lunch_break_end = $this->db->query('select value from configurations where name = "lnch_brk_e"')->row()->value;
+        $lunch_break_start = $this->db->query('select value from configurations where name = "lnch_brk_start"')->row()->value;
+        $lunch_break_end = $this->db->query('select value from configurations where name = "lnch_brk_end"')->row()->value;
         $day_data['now'] = date("Y/m/j H:j:s ", mktime());
         // a day is empty per se
         for ($i = $visit_start; $i < $lunch_break_start; $i++) {

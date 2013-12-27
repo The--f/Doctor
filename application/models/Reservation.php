@@ -41,8 +41,10 @@ class Reservation extends CI_Model {
     }
 
     function findReservations_per_day($year, $month, $day) {
-         $this->db->select()->from('reservation')->like(
-                'date_time_start', date('Y-m-d', mktime(0, 0, 0, $month, $day, $year)));
+        $sql = 'SELECT date_time_start, nom, prenom, email, lenght  FROM reservation
+               JOIN patients ON reservation.patient_id = patients.id
+               WHERE date_time_start LIKE *******';
+        $this->db->select('date_time_start, nom, prenom, email, lenght')->from('reservation')->join('patients', 'reservation.patient_id = patients.id')->like('date_time_start', date('Y-m-d', mktime(0, 0, 0, intval($month), intval($day), intval($year))));
         $query = $this->db->get();
         return ($query);
     }

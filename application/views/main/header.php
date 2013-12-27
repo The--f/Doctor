@@ -6,10 +6,10 @@
 }
         if ($this->session->userdata('user_name')) {
                     echo 'logged in as ' . $this->session->userdata('user_name');
-                    echo '<a href="logout">logout</a>';
-        } else {
-    echo '<a href="login"> login </a>';
-            }
+                    echo '<a href="' . site_url('logout') . '">logout</a>';
+} else {
+                  echo '<a href="' . site_url('login') . '"> login </a>';
+}
         ?>
     </div>
 </div>
