@@ -23,13 +23,13 @@ class TestInsert extends CI_Controller {
     function index() {
         $this->form_validation->set_rules('nom', 'Nom', 'required|trim|max_length[20]');
         $this->form_validation->set_rules('prenom', 'Prenom', 'required|trim|max_length[20]');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[20]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[40]');
 
         $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
 
         if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
             $this->load->view('TestInsert/formview');
-        } 
+        }
         else { // passed validation proceed to post success logic
             // build array for the model
 
@@ -44,7 +44,7 @@ class TestInsert extends CI_Controller {
 
               if ($this->Patient->insertPatient($form_data['nom'], $form_data ['prenom'], $form_data ['email']) == TRUE) { // the information has therefore been successfully saved in the db
                 redirect('main_control');   // or whatever logic needs to occur
-            } 
+            }
             else {
                 echo 'An error occurred saving your information. Please try again later';
                 // Or whatever error handling is necessary
@@ -63,12 +63,12 @@ class TestInsert extends CI_Controller {
     if ($is_exist) {
         $this->form_validation->set_message(
             'isEmailExist', 'Email address is already exist.'
-        );    
+        );
         return false;
     } else {
         return true;
     }
-}    
+}
 }
 
 ?>

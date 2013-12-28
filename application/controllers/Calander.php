@@ -48,25 +48,25 @@ class Calander extends CI_Controller {
         // TODO : get the weekly day of rest from configuration and ommit it
         $calender_data = array();
         $number_of_days = date("t", mktime(0, 0, 0, $month, $day, $year));
-        $weekly_day_off = $this->db->query('select value from configurations where name = "weekly_day_off"')->row()->value;
+        $weekly_day_off_list = explode(",", $this->db->query('select value from configurations where name = "weekly_day_off"')->row()->value);
+        $max_nbr_visit = $this->db->query('select value from configurations where name = "max_nbr_visit"')->row()->value;
+        $start = ( $month == date('m') ? intval(date("j")) : 1 );
         if (mktime(0, 0, 0, $month, $day, $year) < mktime(0, 0, 0, date("n"), 1, date("Y"))) {
             $calender_data = NULL;
         } else {
 
-            $start = ( $month == date('m') ? intval(date("j")) : 1 );
             for ($day = $start; $day < $number_of_days + 1; $day++) {
                 // a working day is empty per se
                 $calender_data[$day] = site_url('calander/day') . '/' . $year . '/' . $month . '/' . $day;
             }
             for ($day = $start; $day < $number_of_days + 1; $day++) {
-                $query_result = $this->Reservation->findReservations_per_day($year, $month, $day);
-                if ($query_result->num_rows() == 7) {
-                    //except some full days
+               $query_result = $this->Reservation->findReservations_per_day($year, $month, $day);
+                if ($query_result->num_rows() == $max_nbr_visit) {
                     $calender_data[$day] = NULL;
                 }
             }
-            for ($day = intval(date("j")); $day < $number_of_days + 1; $day++) {
-                if (date('N', mktime(0, 0, 0, $month, $day, $year)) == $weekly_day_off) {
+            for ($day = $start; $day < $number_of_days + 1; $day++) {
+                if (in_array(date('N', mktime(0, 0, 0, $month, $day, $year)), $weekly_day_off_list)) {
                     $calender_data[$day] = NULL;
                 }
             }

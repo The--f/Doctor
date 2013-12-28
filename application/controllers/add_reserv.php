@@ -54,8 +54,10 @@ class add_reserv extends CI_Controller {
         $this->load->view('add_reserv/reserv_add_view', $data);
     }
     function send_confirmation_mail($year, $month, $day, $hour) {
-            $usermail = $this->session->userdata('user_mail');
+        $usermail = $this->session->userdata('user_mail');
         $username = $this->session->userdata('user_name');
+        $this->load->database();
+        $this->db->query('select value from configurations where name = "admin_user"')->row()->value;
         $doctor_name = "الدكتور حكيم ";
         $mail_message = "Hello " . $username . "\n\tWe are glad to confirm your "
                 . "appointment with your doctor Mr" . $doctor_name . "\nReservation on :"
@@ -63,11 +65,11 @@ class add_reserv extends CI_Controller {
                 . "Please try to be on time\n\nSincerely," . $doctor_name . "\n";
         $mail_subject = "Meeting with " . $doctor_name . ":" . $day . "/" . $month . "/" . $year . " " . $hour . ":00 \n";
         $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'doctorreservation@gmail.com',
-            'smtp_pass' => 'doctor123456789',
+            'protocol' => $this->db->query('select value from configurations where name = "mail_protocol"')->row()->value,
+            'smtp_host' => $this->db->query('select value from configurations where name = "mail_host"')->row()->value,
+            'smtp_port' => $this->db->query('select value from configurations where name = "mail_port"')->row()->value,
+            'smtp_user' => $this->db->query('select value from configurations where name = "mail_user_name"')->row()->value,
+            'smtp_pass' => $this->db->query('select value from configurations where name = "mail_password"')->row()->value,
             'smtp_timeout' => 7,
             'charset' => 'utf-8'
         );

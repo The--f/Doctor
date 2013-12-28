@@ -31,7 +31,7 @@ echo form_open('TestInsert', $attributes);
 <p>
     <label for="email">Email <span class="required">*</span></label>
 <?php echo form_error('email'); ?>
-    <br /><input id="email" type="text" name="email" maxlength="20" value="<?php echo set_value('email'); ?>" autocomplete="off" />
+    <br /><input id="email" type="text" name="email" maxlength="40" value="<?php echo set_value('email'); ?>" autocomplete="off" />
 </p>
 
 

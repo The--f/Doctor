@@ -1,6 +1,5 @@
-
 <div id="header">
-    <?php
+<?php
     echo '<a href="' . base_url() . '">home</a> ';
     echo '<br>';
 ?>
