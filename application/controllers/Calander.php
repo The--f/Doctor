@@ -21,7 +21,13 @@ class Calander extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('date');
         $this->load->helper('form');
-        $prefs = array( 'show_next_prev' => TRUE, 'next_prev_url' => site_url('calander'));
+        $Calander_template = read_file('./application/views/Calander/calander_template.php');
+        $prefs = array(
+            'show_next_prev' => TRUE,
+            'next_prev_url' => site_url('calander'),
+            'day_type' => 'short',
+            'template' => $Calander_template
+        );
         $this->load->library('calendar', $prefs);
         $this->load->library('session');
         $this->load->database();

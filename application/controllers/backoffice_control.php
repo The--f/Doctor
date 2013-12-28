@@ -107,7 +107,14 @@ class backoffice_control extends CI_Controller {
         } else {
             $this->load->helper('url');
             $this->load->helper('date');
-            $prefs = array('show_next_prev' => TRUE, 'next_prev_url' => site_url('admin/calander'));
+            $this->load->helper('file');
+            $Calander_template = read_file('./application/views/Calander/calander_template.php');
+            $prefs = array(
+                'show_next_prev' => TRUE,
+                'next_prev_url' => site_url('admin/calander'),
+                'day_type' => 'short',
+                'template' => $Calander_template
+            );
             $this->load->library('calendar', $prefs);
             $this->load->library('session');
             $this->load->database();
@@ -245,7 +252,7 @@ class backoffice_control extends CI_Controller {
                 for ($h = $lunch_break_end; $h < $visit_end; $h++) {   $day_emptyspots [$h] = $h;  }
                 $day_emptyspots = array_diff($day_emptyspots, $day_data);
                 // finally an empty spot
-                
+
                 $new_date = date('Y-m-d H:i:s', mktime(current($day_emptyspots), 0, 0, date("n", $time), date("j", $time), date("Y", $time)));
                 if ($this->Reservation->insertReservation($new_date, $ids[$i])) {
                     $data['new_time'][$hour] = $new_date;
@@ -257,6 +264,44 @@ class backoffice_control extends CI_Controller {
 
         $this->load->view('main/header');
         $this->load->view('back_office/reserv_alter_view', $data);
+    }
+
+    function send_reschdule_mail($new_date, $user_id) {
+        $usermail = $this->session->userdata('user_mail');
+        $username = $this->session->userdata('user_name');
+        $this->load->database();
+        $this->db->query('select value from configurations where name = "admin_user"')->row()->value;
+        $doctor_name = "الدكتور حكيم ";
+        $mail_message = "Hello " . $username . "\n\tWe are glad to confirm your "
+                . "appointment with your doctor Mr" . $doctor_name . "\nReservation on :"
+                . $day . "/" . $month . "/" . $year . " at : " . $hour . " : 00 \n"
+                . "Please try to be on time\n\nSincerely," . $doctor_name . "\n";
+        $mail_subject = "Meeting with " . $doctor_name . ":" . $day . "/" . $month . "/" . $year . " " . $hour . ":00 \n";
+        $config = Array(
+            'protocol' => $this->db->query('select value from configurations where name = "mail_protocol"')->row()->value,
+            'smtp_host' => $this->db->query('select value from configurations where name = "mail_host"')->row()->value,
+            'smtp_port' => $this->db->query('select value from configurations where name = "mail_port"')->row()->value,
+            'smtp_user' => $this->db->query('select value from configurations where name = "mail_user_name"')->row()->value,
+            'smtp_pass' => $this->db->query('select value from configurations where name = "mail_password"')->row()->value,
+            'smtp_timeout' => 7,
+            'charset' => 'utf-8'
+        );
+        $this->load->library('email', $config);
+        //$this->email->initialize($config);
+        $this->email->set_newline("\r\n");
+        $this->email->From('doctorreservation@gmail.com');
+        $this->email->to($usermail);
+        $this->email->subject($mail_subject);
+        $this->email->message($mail_message);
+//        $path = $this->config->item('server_root');
+//        $file = $path . './attachments/test.txt';
+//        $this->email->attach($file);
+
+ if ($this->email->send()) {
+            return 'success';
+        } else {
+            show_error($this->email->print_debugger());
+        }
     }
 
 }
