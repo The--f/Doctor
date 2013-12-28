@@ -30,14 +30,14 @@ class Email extends CI_Controller {
         $username = $this->session->get('user_name');
         $this->load->library('email', $config);
         $this->email->set_newline('\r\n');
-        $this->email->From('doctorreservation@gmail.com');
+        $this->email->from('doctorreservation@gmail.com');
         $this->email->to($usermail);
         $this->email->subject('test');
         $this->email->message('test'.$username);
         $path = $this->config->item('server_root');
         $file = $path.'./attachments/test.txt';
         $this->email->attach($file);
-        //$this->email->initialize($config);
+        $this->email->initialize($config);
         if($this->email->send())
         {
             echo 'success';
