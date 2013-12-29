@@ -79,8 +79,8 @@ class Calander extends CI_Controller {
             }
         }
 
-        $this->load->view('main/header');
-        $this->load->view('main/menu');
+        //$this->load->view('main/header');
+        //$this->load->view('main/menu');
         echo $this->calendar->generate($year, $month, $calender_data);
 
     }

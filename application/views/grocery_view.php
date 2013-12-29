@@ -48,7 +48,7 @@
                             <li class="dropdown">
                                 <?php
                                     if (!$this->session->userdata('user_name')) {
-                                        
+
 }
                                                 if ($this->session->userdata('user_name')) {
                                                             echo 'logged in as ' . $this->session->userdata('user_name');
@@ -57,7 +57,7 @@
                                                           echo '<a class="dropdown-toggle" href="' . site_url('login') . '"> login </a>';
                                         }
                                 ?>
-                                
+
                 </div>
             </div></div></div>
             <div class="row-fluid">
@@ -88,15 +88,18 @@
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Reservation</div>
                                 <div style='height:20px;'></div>
-        <div>
-            <?php echo $output; ?>
-
-        </div>
+                                <div>
+                                    <?php echo $output; ?>
 
                                 </div>
+
                             </div>
+                        </div>
+                    </div>
         </div>
-                        </div> </div> </div> </div>
+            </div>
+        </div
+    </div>
        ->
     </body>
 </html>

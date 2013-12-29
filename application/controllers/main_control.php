@@ -70,7 +70,7 @@ class main_control extends CI_Controller {
         $crud->where('patient_id', $this->session->userdata('user_id'));
         $crud->display_as('patient_id', 'Nom');
         $crud->display_as('date_time_start', 'Date');
-        $crud->set_relation('patient_id', 'patients', '{nom} {prenom} ( {email} )');
+        $crud->set_relation('patient_id', 'patients', '{nom} {prenom} ');
         $crud->unset_export();
         $crud->unset_print();
         $crud->unset_add();
