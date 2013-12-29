@@ -55,7 +55,18 @@
     ?>
                     </ul>
 </div>
-</div>
+
+        <div class="span9" id="content">
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Acceuil</div>
+                                
+
+                                </div>
+                            </div>
         </div>
+                        </div> </div> </div> </div>
 </body>
 </html>
