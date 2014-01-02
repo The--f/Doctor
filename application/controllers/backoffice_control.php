@@ -69,7 +69,7 @@ class backoffice_control extends CI_Controller {
         $this->_example_output($output);
     }
     function _example_output($output = null) {
-        $this->load->view('main/header');
+        //$this->load->view('main/header');
         $this->load->view('grocery_view', $output);
     }
 
@@ -142,7 +142,7 @@ class backoffice_control extends CI_Controller {
                     }
                 }
             }
-            $this->load->view('main/header');
+            //$this->load->view('main/header');
             //$this->load->view('main/menu');
             echo $this->calendar->generate($year, $month, $calender_data);
         }

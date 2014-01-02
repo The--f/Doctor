@@ -18,8 +18,8 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                
-                                
+
+
                 </div>
             </div></div></div>
             <div class="row-fluid">
@@ -50,7 +50,7 @@
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Sign In</div></div>
                                 <div class="block-content collapse in">
-                                
+
         <?php
 // Change the css classes to suit your needs
 
@@ -85,8 +85,8 @@ echo form_open('TestInsert', $attributes);
 
 <p>
     <div class="form-actions">
-                                          
-                                        
+
+
     <input type="button" class="btn btn-large" onclick="history.back();" value="Back">
     <?php $style = array('class' => 'btn btn-large btn-primary');
               echo form_submit('submit', 'Submit' ,"class = 'btn btn-large btn-primary'");?>
@@ -100,11 +100,11 @@ echo form_open('TestInsert', $attributes);
                             </div>
         </div>
                         </div> </div> </div> </div>
-        
+
     </body>
 </html>
 
-   
+
 
 </body>
 </html>

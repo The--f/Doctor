@@ -37,13 +37,17 @@ class Calander extends CI_Controller {
         $month_number = date("m");
         $year_number = date("Y");
     }
-
+//    function calander($year, $month) {
+//        $d = array('year' => $year, 'month' => $month);
+//        //$this->load->view('show_calander_view', $d);
+//    }
     // this is a full month  linked calander for testing
     // need to get the full days and ommit their links  --Done
     function view_calander($year, $month) {
         //LOGIN TEST :
         if (!$this->session->userdata('user_name')) {
-            redirect('main_control');
+            echo ' not connected';
+            redirect('login');
         }
         $this->month_number = date("m");
         $this->year_number = date("Y");
@@ -78,9 +82,6 @@ class Calander extends CI_Controller {
                 }
             }
         }
-
-        //$this->load->view('main/header');
-        //$this->load->view('main/menu');
         echo $this->calendar->generate($year, $month, $calender_data);
 
     }

@@ -42,8 +42,9 @@ class main_control extends CI_Controller {
 
                 redirect('main_control');
             }
-            else
-                redirect ('TestInsert');
+            else {
+                redirect('TestInsert');
+            }
         }
     }
 
@@ -53,14 +54,21 @@ class main_control extends CI_Controller {
     }
 
     function index() {
+        $vew_data = array();
         $this->load->database();
         $admin_username = $this->db->query('select value from configurations where name = "admin_user"')->row()->value;
         if (($this->session->userdata('user_name') == $admin_username)) {
             redirect('admin/index');
         } else {
-            $this->load->view('main/header');
-            $this->load->view('main/menu');
-        }
+                  if ($this->session->userdata('user_name')) {
+                $vew_data['loged'] = TRUE;
+                $vew_data['username'] = $this->session->userdata('user_name');
+            } else {
+                $vew_data['loged'] = FALSE;
+            }
+            //$this->load->view('main/header');
+             $this->load->view('main/menu', $vew_data);
+            }
     }
 
     function reservations() {
@@ -83,12 +91,7 @@ class main_control extends CI_Controller {
     }
 
     function _example_output($output = null) {
-        $this->load->view('main/header');
+        //$this->load->view('main/header');
         $this->load->view('grocery_view', $output);
     }
-
-    function error($errnumber) {
-        echo ' an 404 error occured ' . $errnumber;
-    }
-
 }
