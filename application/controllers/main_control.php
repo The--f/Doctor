@@ -39,11 +39,10 @@ class main_control extends CI_Controller {
                         'user_mail' => $row->email
                     ));
                 }
-
-                redirect('main_control');
-            }
-            else {
-                redirect('TestInsert');
+                $this->load->view('login/success_view');
+            } else {
+                echo error;
+                //$this->load->view('login/success_view');
             }
         }
     }
