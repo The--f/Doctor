@@ -41,8 +41,7 @@ class main_control extends CI_Controller {
                 }
                 $this->load->view('login/success_view');
             } else {
-                echo error;
-                //$this->load->view('login/success_view');
+                 redirect('TestInsert');
             }
         }
     }

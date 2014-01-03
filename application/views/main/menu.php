@@ -13,11 +13,11 @@
             function show(path){
                 document.getElementById('iframetitle').innerHTML = 'Home > '+ path;
                 document.getElementById('iframe').setAttribute("src", path) ;
+                document.getElementById('iframecontainer').setAttribute("style", " overflow: hidden; width: 100%;") ;
+//                style=" overflow: hidden; width: 100%;"
+                $('#iframecontainer').height(300);
             }
-            function show_calander(){
-                document.getElementById('iframetitle').innerHTML = 'Home > Calander';
-                document.getElementById('iframe').setAttribute("src","calander") ;
-            }
+
         </script>
     </head>
     <body>
@@ -61,16 +61,16 @@ echo ($loged ? '<li><a href="' . site_url('logout') . '">logged in as ' . $usern
                 </ul>
             </div>
             <div class="span9" id="content">
-                <div class="row-fluid">
+                <div class="row" >
                     <!-- block -->
-                        <div class="block">
-                            <div class="navbar navbar-inner block-header">
+                    <div class="block"  id="box_clear"  style="min-height: fit-content ;min-width: fit-content;" >
+                        <div class="navbar navbar-inner block-header">
                                 <div class="text-primary pull-left" id="iframetitle" >Home</div>
                             </div>
-                            <div class="block-content" name="if_c" id="iframecontainer">
-                                <iframe  style="min-height: 50%   ; width: 100% ; " name="iframe" id="iframe" seamless="false" ></iframe>
-                            </div>
+                        <div class="container"  name="if_c" id="iframecontainer" style="min-height : fit-content;">
+                            <iframe  name="iframe"  id="iframe" seamless="on" style="overflow: hidden" ></iframe>
                         </div>
+                    </div>
                     <!-- /block -->
                 </div>
             </div>
