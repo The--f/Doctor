@@ -36,17 +36,21 @@ class Reservation extends CI_Model {
     }
 
     //TODO: search for Reservtions based on Patient
-    function findReservation_patient($needle_patient_id) {
-        $this->db->get_where('Reservation', array('patient' => $needle_patient_id));
+    function findReservation_patient_id($needle_patient_id) {
+        return ($this->db->get_where('Reservation', array('patient' => $needle_patient_id)));
     }
 
     function findReservations_per_day($year, $month, $day) {
         $sql = 'SELECT date_time_start, nom, prenom, email, lenght  FROM reservation
                JOIN patients ON reservation.patient_id = patients.id
                WHERE date_time_start LIKE *******';
-        $this->db->select('date_time_start, nom, prenom, email, lenght')->from('reservation')->join('patients', 'reservation.patient_id = patients.id')->like('date_time_start', date('Y-m-d', mktime(0, 0, 0, intval($month), intval($day), intval($year))));
+        $this->db->select('date_time_start, nom, prenom, email,patient_id, lenght')->from('reservation')->join('patients', 'reservation.patient_id = patients.id')->like('date_time_start', date('Y-m-d', mktime(0, 0, 0, intval($month), intval($day), intval($year))));
         $query = $this->db->get();
         return ($query);
+    }
+    function delete_resrvation($id) {
+        $this->db->where('id_reserv', $id);
+        return ($this->db->delete('reservation'));
     }
 
     function findReservations_per_month($year, $month) {

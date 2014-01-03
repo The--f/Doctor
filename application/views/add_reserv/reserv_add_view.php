@@ -8,6 +8,8 @@ echo ($confirm ? 'confirmed ' : 'not confirmed');
 echo '  reservation for : ';
 echo $patient_name;
 echo '<br>';
+echo 'mail' . ($confirm ? ' ' : ' not ') . 'sent';
+echo '<br>';
 echo ("Reservation on :   ");
 echo ("<br>");
 echo $day;

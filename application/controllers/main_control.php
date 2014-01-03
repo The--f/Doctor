@@ -9,16 +9,18 @@
 class main_control extends CI_Controller {
     public function __construct() {
         parent::__construct();
+        $this->load->database();
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->library('grocery_CRUD');
         $this->load->library('session');
     }
 
     function login() {
         $this->load->database();
         $this->load->model('Patient');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|valid_email|max_length[20]');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|xss_clean|valid_email|max_length[50]');
         $this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
         if ($this->form_validation->run() == FALSE) { // validation hasn't been passed
             $this->load->view('login/login_view');
@@ -37,11 +39,10 @@ class main_control extends CI_Controller {
                         'user_mail' => $row->email
                     ));
                 }
-
-                redirect('main_control');
+                $this->load->view('login/success_view');
+            } else {
+                 redirect('TestInsert');
             }
-            else
-                redirect ('TestInsert');
         }
     }
 
@@ -51,17 +52,44 @@ class main_control extends CI_Controller {
     }
 
     function index() {
+        $vew_data = array();
         $this->load->database();
         $admin_username = $this->db->query('select value from configurations where name = "admin_user"')->row()->value;
         if (($this->session->userdata('user_name') == $admin_username)) {
             redirect('admin/index');
         } else {
-            $this->load->view('main/header');
-            $this->load->view('main/menu');
-        }
-    }
-    function error($errnumber) {
-        echo ' an 404 error occured ' . $errnumber;
+                  if ($this->session->userdata('user_name')) {
+                $vew_data['loged'] = TRUE;
+                $vew_data['username'] = $this->session->userdata('user_name');
+            } else {
+                $vew_data['loged'] = FALSE;
+            }
+            //$this->load->view('main/header');
+             $this->load->view('main/menu', $vew_data);
+            }
     }
 
+    function reservations() {
+        $crud = new grocery_CRUD();
+        $crud->set_table('reservation');
+        $crud->columns('patient_id', 'date_time_start');
+        $crud->where('patient_id', $this->session->userdata('user_id'));
+        $crud->display_as('patient_id', 'Nom');
+        $crud->display_as('date_time_start', 'Date');
+        $crud->set_relation('patient_id', 'patients', '{nom} {prenom} ');
+        $crud->unset_export();
+        $crud->unset_print();
+        $crud->unset_add();
+        $crud->unset_texteditor();
+        $crud->unset_read();
+        $crud->unset_delete();
+        $crud->unset_edit();
+        $output = $crud->render();
+        $this->_example_output($output);
+    }
+
+    function _example_output($output = null) {
+        //$this->load->view('main/header');
+        $this->load->view('grocery_view', $output);
+    }
 }

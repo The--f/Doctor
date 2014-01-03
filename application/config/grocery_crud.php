@@ -14,13 +14,13 @@
 	//You can choose 'ckeditor','tinymce' or 'markitup'
 	$config['grocery_crud_default_text_editor'] = 'ckeditor';
 	//You can choose 'minimal' or 'full'
-	$config['grocery_crud_text_editor_type'] 	= 'full';
+	$config['grocery_crud_text_editor_type'] = 'minimal';
 
-	//The character limiter at the list page, zero(0) value if you don't want character limiter at your list page
-	$config['grocery_crud_character_limiter'] 	= 30;
+        //The character limiter at the list page, zero(0) value if you don't want character limiter at your list page
+$config['grocery_crud_character_limiter'] 	= 30;
 
 	//All the forms are opening with dialog forms without refreshing the page once again.
-	//IMPORTANT: PLease be aware that this functionality is still in BETA phase and it is 
+	//IMPORTANT: PLease be aware that this functionality is still in BETA phase and it is
 	//not suggested to use this in production mode
 	$config['grocery_crud_dialog_forms'] = false;
 

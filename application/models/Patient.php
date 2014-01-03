@@ -57,6 +57,13 @@ class Patient extends CI_Model {
         return ($this->db->get('patients'));
     }
 
+    function GetAutocomplete($options = array()) {
+        $this->db->select('email');
+        $this->db->like('email', $options['keyword']);
+        $query = $this->db->get('patients');
+        return $query->result();
+    }
+
     function isEmailExist($email) {
     $this->db->select('id');
     $this->db->from('patients');

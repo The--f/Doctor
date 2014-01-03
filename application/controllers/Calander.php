@@ -20,21 +20,34 @@ class Calander extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('date');
-        $prefs = array( 'show_next_prev' => TRUE, 'next_prev_url' => site_url('calander'));
+        $this->load->helper('form');
+        $this->load->helper('file');
+        $Calander_template = read_file('./application/views/Calander/calander_template.php');
+        $prefs = array(
+            'show_next_prev' => TRUE,
+            'next_prev_url' => site_url('calander'),
+            'day_type' => 'short',
+            'template' => $Calander_template
+        );
         $this->load->library('calendar', $prefs);
         $this->load->library('session');
         $this->load->database();
         $this->load->model('Reservation');
+
         $month_number = date("m");
         $year_number = date("Y");
     }
-
+//    function calander($year, $month) {
+//        $d = array('year' => $year, 'month' => $month);
+//        //$this->load->view('show_calander_view', $d);
+//    }
     // this is a full month  linked calander for testing
     // need to get the full days and ommit their links  --Done
     function view_calander($year, $month) {
         //LOGIN TEST :
         if (!$this->session->userdata('user_name')) {
-            redirect('main_control');
+            echo ' not connected';
+            redirect('login');
         }
         $this->month_number = date("m");
         $this->year_number = date("Y");
@@ -46,30 +59,29 @@ class Calander extends CI_Controller {
         // TODO : get the weekly day of rest from configuration and ommit it
         $calender_data = array();
         $number_of_days = date("t", mktime(0, 0, 0, $month, $day, $year));
-        $weekly_day_off = $this->db->query('select value from configurations where name = "weekly_day_off"')->row()->value;
+        $weekly_day_off_list = explode(",", $this->db->query('select value from configurations where name = "weekly_day_off"')->row()->value);
+        $max_nbr_visit = $this->db->query('select value from configurations where name = "max_nbr_visit"')->row()->value;
+        $start = ( $month == date('m') ? intval(date("j")) : 1 );
         if (mktime(0, 0, 0, $month, $day, $year) < mktime(0, 0, 0, date("n"), 1, date("Y"))) {
             $calender_data = NULL;
         } else {
-            for ($day = date("j"); $day < $number_of_days + 1; $day++) {
+
+            for ($day = $start; $day < $number_of_days + 1; $day++) {
                 // a working day is empty per se
                 $calender_data[$day] = site_url('calander/day') . '/' . $year . '/' . $month . '/' . $day;
             }
-            for ($day = intval(date("j")); $day < $number_of_days + 1; $day++) {
-                $query_result = $this->Reservation->findReservations_per_day($year, $month, $day);
-                if ($query_result->num_rows() == 7) {
-                    //except some full days
+            for ($day = $start; $day < $number_of_days + 1; $day++) {
+               $query_result = $this->Reservation->findReservations_per_day($year, $month, $day);
+                if ($query_result->num_rows() == $max_nbr_visit) {
                     $calender_data[$day] = NULL;
                 }
             }
-            for ($day = intval(date("j")); $day < $number_of_days + 1; $day++) {
-                if (date('N', mktime(0, 0, 0, $month, $day, $year)) == $weekly_day_off) {
+            for ($day = $start; $day < $number_of_days + 1; $day++) {
+                if (in_array(date('N', mktime(0, 0, 0, $month, $day, $year)), $weekly_day_off_list)) {
                     $calender_data[$day] = NULL;
                 }
             }
         }
-
-        $this->load->view('main/header');
-        $this->load->view('main/menu');
         echo $this->calendar->generate($year, $month, $calender_data);
 
     }

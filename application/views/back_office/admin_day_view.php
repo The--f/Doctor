@@ -12,12 +12,12 @@ and open the template in the editor.
     <body>
         <br><?php echo $day . '/' . $month . '/' . $year; ?>  <br>
         <?php
-        form_open('admin/add_occupation', '', array('day' => $day, 'month' => $month, 'year' => $year));
-        foreach ($hour as $hour_number => $taken_or_not) {
-    echo '<input type="checkbox" name="' . ( $taken_or_not ? 'occupation[]' : 'reschedule[]' ) . '" value="' . $hour_number .
-    ( $taken_or_not ? '"' : '"checked=TRUE' ) . ' /> ' . $hour_number . ' : 00 ' .
-    ( $taken_or_not ? '' : '==>' . $names[$hour_number] . ' (' . $mails[$hour_number] . ')') . '<br/>';
-            }
+        echo form_open('admin/add_occupation', '', array('day' => $day, 'month' => $month, 'year' => $year, 'hidden_hours' => $hidden_hours, 'ids' => $ids));
+foreach ($hour as $hour_number => $is_empty) {
+                echo '<input type="checkbox" name="' . ( $is_empty ? 'occupation[]' : 'reschedule[]' ) . '" value="' . $hour_number . '"' .
+                        ( $is_empty ? '' : 'checked=TRUE' ) . ' /> ' . $hour_number . ' : 00 ' .
+                        ( $is_empty ? '' : '==>' . $names[$hour_number] . ' (' . $mails[$hour_number] . ')') . '<br/>';
+}
           ?>
 
             <input type="button" onclick="history.back();" value="Back">

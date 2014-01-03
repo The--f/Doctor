@@ -10,18 +10,15 @@ and open the template in the editor.
         <title><?php echo $day . '/' . $month . '/' . $year; ?>  </title>
     </head>
     <body>
-        <form action="<?php echo site_url('add_reserv'); ?>" method="post" >
-            <input type="hidden" name="day" value="<?php echo $day; ?>" >
-            <input type="hidden" name="month" value="<?php echo $month; ?>" >
-            <input type="hidden" name="year" value="<?php echo $year; ?>" >
-            <?php
+        <?php
+        echo form_open('add_reserv/add', '', array('day' => $day, 'month' => $month, 'year' => $year));
         foreach ($hour as $hour_number => $taken_or_not) {
-    echo '<input type="radio" name="hour" value="' . $hour_number .
-              ( $taken_or_not ? '"' : '"disabled=TRUE"' ) . '" /> ' . $hour_number . '<t> : 00  <br/>';
-}
-            ?>
-            <input type="submit" value="confirm" name="confirm"/>
+            echo '<input type="radio" name="hour" value="' . $hour_number .
+            ( $taken_or_not ? '"' : '"disabled=TRUE"' ) . '" /> ' . $hour_number . ': 00  <br/>';
+        }
+            echo form_submit('submit', 'confirm');
+             echo form_close();
+        ?>
             <input type="button" onclick="history.back();" value="Back">
-        </form>
     </body>
 </html>
