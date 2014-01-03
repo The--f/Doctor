@@ -15,7 +15,9 @@
 		$( "#idEmail" ).autocomplete({
 			source: function(request, response) {
 				$.ajax({ url: "<?php echo site_url('autocomplete/suggestions'); ?>",
-				data: { term: $("#idEmail").val()},
+				data: { term: $("#idEmail").val(),
+                                        csrf_test_name : $("input[name=csrf_test_name]").val()
+                                       },
 				dataType: "json",
 				type: "POST",
 				success: function(data){
