@@ -5,6 +5,11 @@
         <link href="<?php echo base_url()?>css/bootstrap-responsive.min.css" rel="stylesheet" >
         <link href="<?php echo base_url()?>css/styles.css" rel="stylesheet" >
         <meta charset="utf-8" />
+        <script type="text/javascript" >
+            $(document).ready(function (){
+                $(".ftitle").html("HELLO");
+            });
+        </script>
         <title>My Reservations</title>
 
         <?php foreach ($css_files as $file): ?>
@@ -34,8 +39,10 @@
         </style>
     </head>
     <body>
-        <div>
+        <div style="min-height: fit-content ">
+            <br>
             <?php echo $output; ?>
+            <br>
         </div>
     </body>
 </html>

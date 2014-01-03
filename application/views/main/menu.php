@@ -8,6 +8,8 @@
         <link type="text/css"href="<?php echo base_url() ?>css/bootstrap-responsive.min.css" rel="stylesheet" >
         <link type="text/css"href="<?php echo base_url() ?>css/styles.css" rel="stylesheet" >
         <link type="text/css" href="<?php echo base_url() ?>/DT_bootstrap.css" rel="stylesheet" >
+        <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-1.10.2.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" >
             function show(path){
@@ -15,7 +17,6 @@
                 document.getElementById('iframe').setAttribute("src", path) ;
                 document.getElementById('iframecontainer').setAttribute("style", " overflow: hidden; width: 100%;") ;
 //                style=" overflow: hidden; width: 100%;"
-                $('#iframecontainer').height(300);
             }
 
         </script>
@@ -67,8 +68,8 @@ echo ($loged ? '<li><a href="' . site_url('logout') . '">logged in as ' . $usern
                         <div class="navbar navbar-inner block-header">
                                 <div class="text-primary pull-left" id="iframetitle" >Home</div>
                             </div>
-                        <div class="container"  name="if_c" id="iframecontainer" style="min-height : fit-content;">
-                            <iframe  name="iframe"  id="iframe" seamless="on" style="overflow: hidden" ></iframe>
+                        <div class="block-content collapse in"  name="if_c" id="iframecontainer" style="min-height : 100%; min-width: 100%">
+                            <iframe  name="iframe"  style="min-height : 100%; min-width: 100%" id="iframe" seamless="on"></iframe>
                         </div>
                     </div>
                     <!-- /block -->

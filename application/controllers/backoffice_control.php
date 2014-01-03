@@ -297,7 +297,7 @@ class backoffice_control extends CI_Controller {
 //        $file = $path . './attachments/test.txt';
 //        $this->email->attach($file);
 
- if ($this->email->send()) {
+        if ($this->email->send()) {
             return 'success';
         } else {
             show_error($this->email->print_debugger());
