@@ -61,7 +61,7 @@ echo '<li>';
 echo '<a href="' . base_url() . 'admin/calander"> show meetings </a>';
 echo '</li>';
 echo '<li>';
-echo '<a href="' . base_url() . 'admin/patients">Liste patients</a> ';
+echo '<a href="' . base_url() . 'admin/patients">List patients</a> ';
 echo '</li>';
 echo '<li>';
 echo '<a href="' . base_url() . 'admin/reservation">List reservations</a> ';
